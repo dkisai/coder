@@ -1,5 +1,7 @@
 import json
 
+
+
 # Cargar los datos de ambos archivos JSON
 with open('movie_ids_09_28_2023.json', 'r') as file1, open('movie_ids_09_29_2023.json', 'r') as file2:
     data1 = [json.loads(line) for line in file1]

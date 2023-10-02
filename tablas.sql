@@ -1,18 +1,3 @@
-
--- Tabla de países
-CREATE TABLE countries (
-    id INT PRIMARY KEY,
-    name VARCHAR(30)
-);
-
--- Tabla de idiomas hablados
-CREATE TABLE spoken_languages (
-    id INT PRIMARY KEY,
-    english_name VARCHAR(30),
-    iso_639_1 VARCHAR(3),
-    name VARCHAR(30)
-);
-
 -- Tabla de películas
 CREATE TABLE movies (
     id INT PRIMARY KEY,
@@ -36,26 +21,14 @@ CREATE TABLE movie_genres (
     FOREIGN KEY (genre_id) REFERENCES genres (id)
 );
 
--- Tabla intermedia para países de películas
-CREATE TABLE movie_countries (
-    movie_id INT,
-    country_id INT,
-    PRIMARY KEY (movie_id, country_id),
-    FOREIGN KEY (movie_id) REFERENCES movies (id),
-    FOREIGN KEY (country_id) REFERENCES countries (id)
-);
-
--- Tabla intermedia para idiomas hablados de películas
-CREATE TABLE movie_spoken_languages (
-    movie_id INT,
-    spoken_language_id INT,
-    PRIMARY KEY (movie_id, spoken_language_id),
-    FOREIGN KEY (movie_id) REFERENCES movies (id),
-    FOREIGN KEY (spoken_language_id) REFERENCES spoken_languages (id)
-);
-
-CREATE TABLE overview (
+CREATE TABLE overviews (
     id INT PRIMARY KEY,
-    overview TEXT,
+    overview CHARACTER VARYING(5000),
     FOREIGN KEY (id) REFERENCES movies (id)
+);
+
+CREATE TABLE genres (
+    id INT PRIMARY KEY,
+    name VARCHAR(30)
+    FOREIGN KEY (id) REFERENCES movie_genres (genre_id)
 );
